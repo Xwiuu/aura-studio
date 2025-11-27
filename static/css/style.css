@@ -1,0 +1,143 @@
+/* static/css/style.css */
+
+body {
+    font-family: 'Manrope', sans-serif;
+    background-color: #050505; /* Fundo escuro para contraste com a luz, ou podemos inverter para Light Theme */
+}
+
+/* Vamos fazer o tema LIGHT MODE mas com contraste invertido no texto via mix-blend-mode para ser artistico */
+body {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+/* Textura de ruído (Noise) */
+.noise-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('https://grainy-gradients.vercel.app/noise.svg');
+    opacity: 0.04;
+    pointer-events: none;
+    z-index: 50;
+}
+
+/* AURA LIGHT - O Cursor Surreal */
+.aura-light {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(255, 200, 150, 0.15) 0%, rgba(255,255,255,0) 70%);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 1;
+    filter: blur(40px);
+    mix-blend-mode: multiply; /* Efeito de queimadura suave */
+    transition: width 0.5s ease, height 0.5s ease;
+}
+
+.cursor-dot {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 8px;
+    height: 8px;
+    background-color: #000;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 100;
+}
+
+/* Tipografia */
+.hero-title span {
+    display: inline-block; /* Necessário para animar letras separadas */
+    color: #1a1a1a;
+}
+
+/* Scroll Line Animation */
+@keyframes scrollDown {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(100%); }
+}
+.animate-scroll-line {
+    animation: scrollDown 2s cubic-bezier(0.77, 0, 0.175, 1) infinite;
+}
+
+.manifesto-text {
+    /* Garante que o texto renderize na camada da GPU para performance */
+    will-change: transform, opacity, filter;
+    transform-style: preserve-3d;
+    color: #0a0a0a; /* Preto quase absoluto */
+    transition: color 0.3s ease;
+}
+
+/* Efeito Hover nas linhas */
+.manifesto-text:hover {
+    color: #444; /* Fica cinza chumbo ao passar o mouse */
+}
+
+/* O wrapper esconde o texto antes dele subir (efeito máscara) */
+.line-wrapper {
+    position: relative;
+    display: block;
+}
+
+.gallery-item {
+    perspective: 1000px; /* Cria o ambiente 3D */
+    z-index: 10;
+}
+
+.frame-wrapper {
+    transform-style: preserve-3d;
+    will-change: transform;
+    /* Sombras suaves para dar profundidade */
+    box-shadow: 0 20px 50px -10px rgba(0,0,0,0.1); 
+}
+
+/* Quando passar o mouse, a imagem sai do zoom padrão e foca */
+.frame-wrapper:hover .frame-img {
+    transform: scale(1.05); /* Zoom sutil */
+    filter: contrast(1.1);
+}
+
+.frame-wrapper:hover .frame-overlay {
+    opacity: 0.4; /* Tinge a imagem com um tom "quente/cinematográfico" */
+}
+
+#horizon-wrapper {
+    /* Garante que não haja scrollbar horizontal nativa */
+    width: 100%;
+    height: 100vh;
+    overflow: hidden; 
+}
+
+#horizon-track {
+    display: flex;
+    flex-wrap: nowrap;
+    /* A largura é definida no HTML (300vw) ou via JS, 
+       mas vamos deixar flexível */
+}
+
+.horizon-panel {
+    /* Cada painel ocupa exatos 100% da viewport */
+    flex: 0 0 100vw;
+    height: 100vh;
+    box-sizing: border-box;
+}
+
+#entropy-lab {
+    cursor: crosshair; /* Muda o cursor para uma mira técnica */
+}
+
+/* Efeito Glitch Base (opcional, mas o GSAP vai controlar a maior parte) */
+#chaos-title {
+    color: #fff;
+    text-shadow: 2px 0 #f0f, -2px 0 #0ff; /* Aberração cromática estática */
+    transition: text-shadow 0.2s ease;
+}
