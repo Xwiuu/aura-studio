@@ -90,7 +90,7 @@ aura_project/
 │       └── script.js    # Lógica de animação, GSAP e Física
 └── templates/
     └── index.html       # Estrutura HTML + Jinja2 Templates
-
+```
 ---
 
 ## 🧠 Conceitos de Engenharia Aplicados
